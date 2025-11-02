@@ -30,14 +30,14 @@ export const ERROR_MESSAGES = Object.freeze({
 
 export const INPUT_MESSAGES = Object.freeze({
   USER_MONEY: '구입금액을 입력해 주세요.\n',
-  WINNING_NUMBERS: '당첨 번호를 입력해 주세요.\n',
-  BONUS_NUMBER: '보너스 번호를 입력해 주세요.\n',
+  WINNING_NUMBERS: '\n당첨 번호를 입력해 주세요.\n',
+  BONUS_NUMBER: '\n보너스 번호를 입력해 주세요.\n',
 });
 
 export const OUTPUT_MESSAGES = Object.freeze({
   DIVIDER: '\n당첨 통계\n---',
 
-  TICKET_COUNT: (count) => `${count}개를 구매했습니다.`,
+  TICKET_COUNT: (count) => `\n${count}개를 구매했습니다.`,
   TICKET_NUMBER: (numbers) => `[${numbers}]`,
 
   PRIZE: Object.freeze({
