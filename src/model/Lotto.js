@@ -25,7 +25,8 @@ class Lotto {
     return [...this.#numbers];
   }
 
-  getMatchingNumbersLength(winningNumbers) {
+  getMatchingNumbersLength(winningLotto) {
+    const winningNumbers = winningLotto.getNumbers();
     return this.#numbers.filter((number) => winningNumbers.includes(number)).length;
   }
 
