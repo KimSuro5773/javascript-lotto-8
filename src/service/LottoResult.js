@@ -11,7 +11,7 @@ class LottoResult {
 
   addLotto(lotto, winningLotto) {
     const matchCount = lotto.getMatchingNumbersLength(winningLotto.getWinningNumbers());
-    const hasBonus = lotto.hasBonusNumber(winningLotto.getBonusNumber());
+    const hasBonus = matchCount === 5 && lotto.hasBonusNumber(winningLotto.getBonusNumber());
 
     const prize = LOTTO_PRIZES.find((p) => p.match === matchCount && p.hasBonus === hasBonus);
 
