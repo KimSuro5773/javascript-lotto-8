@@ -7,8 +7,10 @@ class WinningLotto {
 
   constructor(winningNumbers, bonusNumber) {
     this.#winningNumbers = new Lotto(winningNumbers);
-    this.#validateBonusNumber(Number(bonusNumber));
-    this.#bonusNumber = Number(bonusNumber);
+
+    const parsedBonusNumber = Number(bonusNumber);
+    this.#validateBonusNumber(parsedBonusNumber);
+    this.#bonusNumber = parsedBonusNumber;
   }
 
   #validateBonusNumber(bonusNumber) {
