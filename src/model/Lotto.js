@@ -11,6 +11,10 @@ class Lotto {
   }
 
   #validateLotto(numbers) {
+    Lotto.validateNumbers(numbers);
+  }
+
+  static validateNumbers(numbers) {
     numbers.forEach((number) => {
       Validator.validateNumber(number);
       Validator.validateInteger(number);

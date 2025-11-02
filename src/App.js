@@ -4,6 +4,7 @@ import OutputView from './view/OutputView.js';
 import LottoMachine from './service/LottoMachine.js';
 import WinningLotto from './service/WinningLotto.js';
 import LottoResult from './service/LottoResult.js';
+import Lotto from './model/Lotto.js';
 import Validator from './validator/Validator.js';
 import LOTTO_CONFIG from './constants/constants.js';
 
@@ -56,15 +57,7 @@ class App {
       Validator.validateHasCommas(input);
 
       const numbers = this.#parseWinningNumbers(input);
-      numbers.forEach((number) => {
-        Validator.validateNumber(number);
-        Validator.validateInteger(number);
-        Validator.validateOutOfRange(number);
-      });
-
-      Validator.validateDuplicate(numbers);
-      Validator.validateLength(numbers);
-
+      Lotto.validateNumbers(numbers);
       return numbers;
     } catch (error) {
       Console.print(error.message);
@@ -73,15 +66,9 @@ class App {
   }
 
   async #getBonusNumber() {
-    try {
-      const input = await this.#inputView.readBonusNumber();
-      this.#validateCommonInput(input);
-
-      return Number(input);
-    } catch (error) {
-      Console.print(error.message);
-      return this.#getBonusNumber();
-    }
+    const input = await this.#inputView.readBonusNumber();
+    this.#validateCommonInput(input);
+    return Number(input);
   }
 
   #calculateAndPrintResult(lottos, winningLotto, purchaseAmount) {
