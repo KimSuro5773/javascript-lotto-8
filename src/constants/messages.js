@@ -36,7 +36,17 @@ export const INPUT_MESSAGES = Object.freeze({
 
 export const OUTPUT_MESSAGES = Object.freeze({
   DIVIDER: '\n당첨 통계\n---',
+
   TICKET_COUNT: (count) => `${count}개를 구매했습니다.`,
-  TICKET_NUMBER: (number) => `[${number}]`,
+  TICKET_NUMBER: (numbers) => `[${numbers}]`,
+
+  PRIZE: Object.freeze({
+    FIRST: (reward, count) => `6개 일치 (${reward.toLocaleString('ko-KR')}원) - ${count}개`,
+    SECOND: (reward, count) => `5개 일치, 보너스 볼 일치 (${reward.toLocaleString('ko-KR')}원) - ${count}개`,
+    THIRD: (reward, count) => `5개 일치 (${reward.toLocaleString('ko-KR')}원) - ${count}개`,
+    FOURTH: (reward, count) => `4개 일치 (${reward.toLocaleString('ko-KR')}원) - ${count}개`,
+    FIFTH: (reward, count) => `3개 일치 (${reward.toLocaleString('ko-KR')}원) - ${count}개`,
+  }),
+
   PROFIT_RATE: (rate) => `총 수익률은 ${rate}%입니다.`,
 });
