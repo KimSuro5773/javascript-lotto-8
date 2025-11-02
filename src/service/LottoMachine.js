@@ -1,5 +1,5 @@
 import { Random } from '@woowacourse/mission-utils';
-import LOTTO_CONFIG from '../constants/constants.js';
+import { LOTTO_CONFIG } from '../constants/constants.js';
 import Validator from '../validator/Validator.js';
 import Lotto from '../model/Lotto.js';
 

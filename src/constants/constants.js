@@ -1,4 +1,4 @@
-const LOTTO_CONFIG = Object.freeze({
+export const LOTTO_CONFIG = Object.freeze({
   LOTTO_PRICE: 1_000,
   NUMBER_COUNT: 6,
   MIN_NUMBER: 1,
@@ -38,5 +38,3 @@ export const LOTTO_PRIZES = Object.freeze([
     reward: 2_000_000_000,
   }),
 ]);
-
-export default LOTTO_CONFIG;

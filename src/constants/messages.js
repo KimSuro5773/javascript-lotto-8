@@ -1,4 +1,4 @@
-import LOTTO_CONFIG from './constants.js';
+import { LOTTO_CONFIG } from './constants.js';
 
 export const ERROR_MESSAGES = Object.freeze({
   COMMON: Object.freeze({

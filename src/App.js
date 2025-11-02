@@ -1,4 +1,5 @@
 import { Console } from '@woowacourse/mission-utils';
+import { LOTTO_CONFIG } from './constants/constants.js';
 import InputView from './view/InputView.js';
 import OutputView from './view/OutputView.js';
 import LottoMachine from './service/LottoMachine.js';
@@ -6,7 +7,6 @@ import WinningLotto from './service/WinningLotto.js';
 import LottoResult from './service/LottoResult.js';
 import Lotto from './model/Lotto.js';
 import Validator from './validator/Validator.js';
-import LOTTO_CONFIG from './constants/constants.js';
 
 class App {
   async run() {
