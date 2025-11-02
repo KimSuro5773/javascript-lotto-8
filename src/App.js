@@ -9,8 +9,6 @@ import Validator from './validator/Validator.js';
 import LOTTO_CONFIG from './constants/constants.js';
 
 class App {
-  #inputView = new InputView();
-
   async run() {
     const { money, lottos } = await this.#purchaseLottos();
     const winningLotto = await this.#getWinningLotto();
@@ -19,7 +17,7 @@ class App {
 
   async #purchaseLottos() {
     try {
-      const input = await this.#inputView.readUserMoney();
+      const input = await InputView.readUserMoney();
       this.#validateCommonInput(input);
 
       const money = Number(input);
@@ -52,7 +50,7 @@ class App {
 
   async #getWinningNumbers() {
     try {
-      const input = await this.#inputView.readWinningNumbers();
+      const input = await InputView.readWinningNumbers();
       Validator.validateEmpty(input);
       Validator.validateHasCommas(input);
 
@@ -66,7 +64,7 @@ class App {
   }
 
   async #getBonusNumber() {
-    const input = await this.#inputView.readBonusNumber();
+    const input = await InputView.readBonusNumber();
     this.#validateCommonInput(input);
     return Number(input);
   }
