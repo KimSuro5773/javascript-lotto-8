@@ -33,7 +33,7 @@ class Validator {
   }
 
   static validateHasCommas(input) {
-    if (!input.includes(LOTTO_CONFIG.SEPERATOR)) {
+    if (!input.includes(LOTTO_CONFIG.SEPARATOR)) {
       throw new Error(ERROR_MESSAGES.LOTTO.INVALID_SEPARATOR);
     }
   }

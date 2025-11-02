@@ -88,7 +88,7 @@ class App {
   }
 
   #parseWinningNumbers(input) {
-    return input.split(LOTTO_CONFIG.SEPERATOR).map((num) => Number(num.trim()));
+    return input.split(LOTTO_CONFIG.SEPARATOR).map((num) => Number(num.trim()));
   }
 }
 
