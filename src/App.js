@@ -83,8 +83,10 @@ class App {
 
   #validateCommonInput(input) {
     Validator.validateEmpty(input);
-    Validator.validateNumber(Number(input));
-    Validator.validateInteger(Number(input));
+
+    const number = Number(input);
+    Validator.validateNumber(number);
+    Validator.validateInteger(number);
   }
 
   #parseWinningNumbers(input) {

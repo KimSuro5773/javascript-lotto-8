@@ -6,12 +6,8 @@ class Lotto {
   constructor(numbers) {
     const sortedNumbers = numbers.map(Number).sort((a, b) => a - b);
 
-    this.#validateLotto(sortedNumbers);
+    Lotto.validateNumbers(sortedNumbers);
     this.#numbers = sortedNumbers;
-  }
-
-  #validateLotto(numbers) {
-    Lotto.validateNumbers(numbers);
   }
 
   static validateNumbers(numbers) {

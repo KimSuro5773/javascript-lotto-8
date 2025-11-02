@@ -29,20 +29,7 @@ class OutputView {
   }
 
   static #getPrizeMessage(rank, reward, count) {
-    switch (rank) {
-      case 'FIRST':
-        return OUTPUT_MESSAGES.PRIZE.FIRST(reward, count);
-      case 'SECOND':
-        return OUTPUT_MESSAGES.PRIZE.SECOND(reward, count);
-      case 'THIRD':
-        return OUTPUT_MESSAGES.PRIZE.THIRD(reward, count);
-      case 'FOURTH':
-        return OUTPUT_MESSAGES.PRIZE.FOURTH(reward, count);
-      case 'FIFTH':
-        return OUTPUT_MESSAGES.PRIZE.FIFTH(reward, count);
-      default:
-        return '';
-    }
+    return OUTPUT_MESSAGES.PRIZE[rank](reward, count);
   }
 
   static #printProfit(result, purchaseAmount) {
