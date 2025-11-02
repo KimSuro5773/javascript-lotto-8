@@ -1,18 +1,37 @@
+import Validator from '../validator/Validator.js';
+
 class Lotto {
   #numbers;
 
   constructor(numbers) {
-    this.#validate(numbers);
-    this.#numbers = numbers;
+    const sortedNumbers = numbers.map(Number).sort((a, b) => a - b);
+
+    this.#validateLotto(sortedNumbers);
+    this.#numbers = sortedNumbers;
   }
 
-  #validate(numbers) {
-    if (numbers.length !== 6) {
-      throw new Error('[ERROR] 로또 번호는 6개여야 합니다.');
-    }
+  #validateLotto(numbers) {
+    numbers.forEach((number) => {
+      Validator.validateNumber(number);
+      Validator.validateInteger(number);
+      Validator.validateOutOfRange(number);
+    });
+
+    Validator.validateDuplicate(numbers);
+    Validator.validateLength(numbers);
   }
 
-  // TODO: 추가 기능 구현
+  getNumbers() {
+    return [...this.#numbers];
+  }
+
+  getMatchingNumbersLength(winningNumbers) {
+    return this.#numbers.filter((number) => winningNumbers.includes(number)).length;
+  }
+
+  hasBonusNumber(bonusNumber) {
+    return this.#numbers.includes(bonusNumber);
+  }
 }
 
 export default Lotto;
