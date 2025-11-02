@@ -1,5 +1,108 @@
+import { Console } from '@woowacourse/mission-utils';
+import InputView from './view/InputView.js';
+import OutputView from './view/OutputView.js';
+import LottoMachine from './service/LottoMachine.js';
+import WinningLotto from './service/WinningLotto.js';
+import LottoResult from './service/LottoResult.js';
+import Validator from './validator/Validator.js';
+import LOTTO_CONFIG from './constants/constants.js';
+
 class App {
-  async run() {}
+  #inputView = new InputView();
+
+  async run() {
+    const { money, lottos } = await this.#purchaseLottos();
+    const winningLotto = await this.#getWinningLotto();
+    this.#calculateAndPrintResult(lottos, winningLotto, money);
+  }
+
+  async #purchaseLottos() {
+    try {
+      const input = await this.#inputView.readUserMoney();
+      this.#validateCommonInput(input);
+
+      const money = Number(input);
+      const lottoMachine = new LottoMachine(money);
+      const lottos = lottoMachine.generateLottos();
+
+      OutputView.printPurchasedLottos(lottos);
+
+      return { money, lottos };
+    } catch (error) {
+      Console.print(error.message);
+      return this.#purchaseLottos();
+    }
+  }
+
+  async #getWinningLotto() {
+    const winningNumbers = await this.#getWinningNumbers();
+    return this.#createWinningLotto(winningNumbers);
+  }
+
+  async #createWinningLotto(winningNumbers) {
+    try {
+      const bonusNumber = await this.#getBonusNumber();
+      return new WinningLotto(winningNumbers, bonusNumber);
+    } catch (error) {
+      Console.print(error.message);
+      return this.#createWinningLotto(winningNumbers);
+    }
+  }
+
+  async #getWinningNumbers() {
+    try {
+      const input = await this.#inputView.readWinningNumbers();
+      Validator.validateEmpty(input);
+      Validator.validateHasCommas(input);
+
+      const numbers = this.#parseWinningNumbers(input);
+      numbers.forEach((number) => {
+        Validator.validateNumber(number);
+        Validator.validateInteger(number);
+        Validator.validateOutOfRange(number);
+      });
+
+      Validator.validateDuplicate(numbers);
+      Validator.validateLength(numbers);
+
+      return numbers;
+    } catch (error) {
+      Console.print(error.message);
+      return this.#getWinningNumbers();
+    }
+  }
+
+  async #getBonusNumber() {
+    try {
+      const input = await this.#inputView.readBonusNumber();
+      this.#validateCommonInput(input);
+
+      return Number(input);
+    } catch (error) {
+      Console.print(error.message);
+      return this.#getBonusNumber();
+    }
+  }
+
+  #calculateAndPrintResult(lottos, winningLotto, purchaseAmount) {
+    const result = new LottoResult();
+
+    lottos.forEach((lotto) => {
+      result.addLotto(lotto, winningLotto);
+    });
+
+    OutputView.printResult(result, purchaseAmount);
+  }
+
+  #validateCommonInput(input) {
+    Validator.validateEmpty(input);
+    Validator.validateNumber(Number(input));
+    Validator.validateInteger(Number(input));
+  }
+
+  #parseWinningNumbers(input) {
+    return input.split(LOTTO_CONFIG.SEPERATOR).map((num) => Number(num.trim()));
+  }
 }
 
 export default App;
