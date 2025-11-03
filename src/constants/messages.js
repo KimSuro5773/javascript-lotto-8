@@ -4,7 +4,6 @@ export const ERROR_MESSAGES = Object.freeze({
   COMMON: Object.freeze({
     EMPTY_INPUT: '[ERROR] 입력값이 비어있습니다.',
     NOT_NUMBER: '[ERROR] 숫자 형식이 아닙니다.',
-    NOT_INTEGER: '[ERROR] 양의 정수가 아닙니다.',
   }),
 
   USER_MONEY: Object.freeze({
