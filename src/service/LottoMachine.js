@@ -1,14 +1,14 @@
 import { Random } from '@woowacourse/mission-utils';
 import { LOTTO_CONFIG } from '../constants/constants.js';
-import Validator from '../validator/Validator.js';
+import { validateUserMoney } from '../utils/validators.js';
 import Lotto from '../model/Lotto.js';
 
 class LottoMachine {
   #money;
 
   constructor(money) {
-    this.#money = Number(money);
-    this.#validateMoney(this.#money);
+    validateUserMoney(money);
+    this.#money = money;
   }
 
   generateLottos() {
@@ -24,11 +24,6 @@ class LottoMachine {
     );
 
     return new Lotto(numbers);
-  }
-
-  #validateMoney(money) {
-    Validator.validateMinimum(money);
-    Validator.validateThousandUnit(money);
   }
 }
 
