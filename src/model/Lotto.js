@@ -1,24 +1,11 @@
-import Validator from '../validator/Validator.js';
+import { validateLotto } from '../utils/validators.js';
 
 class Lotto {
   #numbers;
 
   constructor(numbers) {
-    const sortedNumbers = numbers.map(Number).sort((a, b) => a - b);
-
-    Lotto.validateNumbers(sortedNumbers);
-    this.#numbers = sortedNumbers;
-  }
-
-  static validateNumbers(numbers) {
-    numbers.forEach((number) => {
-      Validator.validateNumber(number);
-      Validator.validateInteger(number);
-      Validator.validateOutOfRange(number);
-    });
-
-    Validator.validateDuplicate(numbers);
-    Validator.validateLength(numbers);
+    validateLotto(numbers);
+    this.#numbers = numbers.sort((a, b) => a - b);
   }
 
   getNumbers() {
