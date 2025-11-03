@@ -67,18 +67,18 @@ export function validateUserMoney(money) {
   validateThousandUnit(money);
 }
 
-export function validateWinningNumbersInput(numbers) {
+export function validateWinningNumbers(numbers) {
   validateEmpty(numbers);
   validateHasCommas(numbers);
-}
-
-export function validateWinningNumbers(numbers) {
-  validateLength(numbers);
-  validateDuplicate(numbers);
-  numbers.forEach((number) => validateOutOfRange(number));
 }
 
 export function validateBonusNumber(bonusNumber, winningNumbers) {
   validateOutOfRange(bonusNumber);
   validateBonusNumberDuplicate(bonusNumber, winningNumbers);
+}
+
+export function validateLotto(numbers) {
+  validateLength(numbers);
+  validateDuplicate(numbers);
+  numbers.forEach((number) => validateOutOfRange(number));
 }
