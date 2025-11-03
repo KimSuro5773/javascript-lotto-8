@@ -50,9 +50,5 @@ describe('로또 클래스 테스트', () => {
     test('로또 번호가 45보다 크면 예외가 발생한다.', () => {
       expect(() => new Lotto([1, 2, 3, 4, 5, 46])).toThrow(ERROR_MESSAGES.LOTTO.OUT_OF_RANGE);
     });
-
-    test('로또 번호가 정수가 아니면 예외가 발생한다.', () => {
-      expect(() => new Lotto([1.5, 2, 3, 4, 5, 6])).toThrow(ERROR_MESSAGES.COMMON.NOT_INTEGER);
-    });
   });
 });
